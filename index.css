@@ -77,7 +77,3 @@ select {
     background-color: var(--dandelion);
     color: white;
 }
-
-option {
-    display:block;
-}
