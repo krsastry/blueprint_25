@@ -10,17 +10,49 @@
         <body>
             <h1 class="header">Yellow Brick Road</h1>
             <link href="index.css" rel = "stylesheet">
+            <input type="text" id="loginInput" placeholder="Enter login credentials"></input>
             <button id="loginBtn" onClick="login()">Log In</button>
-            <button id="signupBtn" onClick="signup()">Sign Up</button>
-            <input type="text" id="loginInput" placeholder="Enter login credentials">
-
+            <button id="signupBtn" onClick="signup()" >Sign Up</button>
             <div>
                 <section id="dashboard" class="hidden">
+                    
+                    <button id="logoutBtn" onClick="logout()">Log Out</button>
                     <h2>Assigned Cases</h2>
-                    <button id="logoutBtn" class="hidden" onClick="logout()">Log Out</button>
-                    <div id="caseLists">Cases will appear here</div>
+                    <div id="caseList">Cases will appear here</div>
+                </section>
+                <section id="caseDetails" class="hidden">
+                    <h2>Case Details</h2>
+                    <p id="caseName"> Status:<span></span></p>
+                    <p id="caseStatus"> Status:<span></span></p>
+
+                    </p>
+                    <button id="updateProgessBtn" class="update-btn" onClick ="showProgressForm()">Update Progress</button>
+                    <button id="backBtn" class="hidden" onClick ="backToDash()">Back To Dashboard</button>
                 </section>
                 
+                <section id="progressForm" onsubmit="processProgForm(event)" class="hidden">
+                    <h2>
+                        Update Progress
+                    </h2>
+                    <form id ="progForm">
+
+                        <br>
+                        <label for="employment"> Employment Status:</label>
+                        <input type="text" id="employment" class="input-field">
+
+                        <br>
+                        <label for="health"> Health Conditions:</label>
+                        <input type="text" id="health" class="input-field">
+
+                        <br>
+                        <label for="notes">Other notes:</label>
+                        <input type="text" id="notes" class="input-field">
+
+                        <br>
+                        <input type="submit" value="Submit">
+                    </form>
+                    <button id="cancelProgressBtn" class="cancel-btn" onClick ="hideProgressForm()">Cancel</button>
+                </section>
                 <section id="form" onsubmit="processClientForm(event)" class="hidden">
                     <h2>Sign-Up Form</h2>
                     <form id="clientForm">
@@ -39,7 +71,7 @@
                         
                         <div>
                         <label for="age">Age: </label> 
-                        <input type="text" id="age" class="input-field" placeholder="ex. 13">
+                        <input type="text" id="age" class="input-field" placeholder="ex. 11">
                         </div>
 
                         <br>
@@ -94,7 +126,7 @@
 
                         <br>
                         <label for="employment">Are you currently employed?</label>
-                        <select name="employment" id="employment">
+                        <select name="employment" id="employ">
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
                         </select>
@@ -105,41 +137,7 @@
                     <div id="result"></div>
                 </section>
 
-                <section id="caseDetails" class="hidden">
-                    <h2>Case Details</h2>
-                    <p id="caseName"> Status:<span></span></p>
-                    <p id="caseStatus"> Status:<span></span></p>
-
-                    </p>
-                    <button id="updateProgessBtn" class="update-btn" onClick ="showProgressForm()">Update Progress</button>
-                    <button id="backBtn" class="hidden" onClick ="backToDash()">Back To Dashboard</button>
-                </section>
                 
-                <section id="progressForm" class="hidden">
-                    <h2>
-                        Update Progress
-                    </h2>
-                    <form id ="progForm">
-                        <label for="housing">Housing Status:</label>
-                        <input type="text" id="housing" class="input-field">
-
-                        <br>
-                        <label for="employment"> Employment Status:</label>
-                        <input type="text" id="employment" class="input-field">
-
-                        <br>
-                        <label for="health"> Health Conditions:</label>
-                        <input type="text" id="health" class="input-field">
-
-                        <br>
-                        <label for="notes">Other notes:</label>
-                        <input type="text" id="notes" class="input-field">
-
-                        <br>
-                        <input type="submit" value="Submit">
-                    </form>
-                    <button id="cancelProgressBtn" class="cancel-btn" onClick ="hideProgressForm()">Cancel</button>
-                </section>
             </div>
             <script src="index.js"></script>
         </body> 

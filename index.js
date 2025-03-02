@@ -1,38 +1,3 @@
-const loginBtn = document.getElementById("loginBtn");
-const logoutBtn = document.getElementById("logoutBtn");
-const dashboard = document.getElementById("dashboard");
-const caseDetails = document.getElementById("caseDetails");
-const casesList = document.getElementById("casesList");
-const caseName = document.getElementById("caseName");
-const caseStatus = document.getElementById("caseStatus");
-const backBtn = document.getElementById("backBtn");
-const loginInput = document.getElementById("loginInput");
-const signupForm = document.getElementById("form");
-// Mock Authentication (Replace with Firebase Auth)
-let userLoggedIn = false;
-function signup() {
-    loginBtn.classList.add("hidden");
-    loginInput.classList.add("hidden");
-    signupForm.classList.remove("hidden");
-
-
-}
-function login() {
-    userLoggedIn = true;
-    loginBtn.classList.add("hidden");
-    dashboard.classList.remove("hidden");
-    loadCases();
-    logout.classList.remove("hidden");
-    loginInput.classList.add("hidden");
-}
-
-function logout(){
-    userLoggedIn = false;
-    loginBtn.classList.remove("hidden");
-    dashboard.classList.add("hidden");
-    loginInput.classList.remove("hidden");
-}
-
 let idCount = 0;
 class Case {
     // Constructor to initialize the properties
@@ -46,28 +11,87 @@ class Case {
         idCount++;
     }  
 }    
+let currentCase = new Case("none", "none", false, 0, "none");
+const loginBtn = document.getElementById("loginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+const dashboard = document.getElementById("dashboard");
+const caseDetails = document.getElementById("caseDetails");
+const caseList = document.getElementById("caseList");
+const caseName = document.getElementById("caseName");
+const caseStatus = document.getElementById("caseStatus");
+const backBtn = document.getElementById("backBtn");
+const loginInput = document.getElementById("loginInput").value;
+const loginBox = document.getElementById("loginInput");
+const signupBtn = document.getElementById("signupBtn");
+const signupForm = document.getElementById("form");
+const progForm = document.getElementById("progressForm");
+// Mock Authentication (Replace with Firebase Auth)
+let userLoggedIn = false;
+function signup() {
+    signupForm.classList.remove("hidden");
+    loginBtn.classList.add("hidden");
+    signupBtn.classList.add("hidden");
+    loginBox.classList.add("hidden");
+    
+
+}
+function login() {
+    //if (loginInput!=null){
+        userLoggedIn = true;
+        dashboard.classList.remove("hidden");
+        loginBtn.classList.add("hidden");
+        signupBtn.classList.add("hidden");
+        loginBox.classList.add("hidden");
+        //caseDetails.classList.remove("hidden");
+        
+        loadCases();
+    //}
+}
+
+function logout(){
+    userLoggedIn = false;
+    loginBtn.classList.remove("hidden");
+    signupBtn.classList.remove("hidden");
+    dashboard.classList.add("hidden");
+    loginInput.classList.remove("hidden");
+}
+
+
 
 // Mock Cases (Replace with Firebase Data)
 let cases = [];
-cases = [
-    new Case("John Smith", "Looking for housing"), 
-    new Case("Jane Doe", "Looking for employment")
-];
+let case1 = new Case("John", "Smith", true, 28, "Looking for housing");
+let case2 = new Case("Jane", "Doe", false, 35, "Looking for employment");
+
+// Add the cases to the cases array
+cases.push(case1);
+cases.push(case2);
 
 function loadCases() {
-    casesList.innerHTML = "";
+    console.log("Loading cases...");  // Debug: Check if the function is triggered
+    caseList.innerHTML = "";  // Clear the list before loading new cases
+    if (cases.length === 0) {
+        console.log("No cases to load.");
+    }
     for (const c of cases){
         const caseDiv = document.createElement("div");
         caseDiv.classList.add("case-card");
-        caseDiv.innerHTML = `<h3>${c.name}</h3><p>${c.status}</p>`;
-        caseDiv.addEventListener("click", () => showCaseDetails(c));
-        casesList.appendChild(caseDiv);
+        caseDiv.innerHTML = `<h3>${c.firstName} ${c.lastName}</h3><p>${c.age}</p>`;
+        caseDiv.addEventListener("click", () => {
+            currentCase = c;
+            showCaseDetails(c)
+        });
+            
+        caseList.appendChild(caseDiv);
     };
 }
 
 function showCaseDetails(c) {
-    caseName.innerText = c.name;
-    caseStatus.innerText = c.status;
+    // Display the case details using the correct variables
+    caseName.innerText = `${c.firstName} ${c.lastName}`;  // Display full name
+    caseStatus.innerText = `Age: ${c.age} | Employed: ${c.isEmployed ? "Yes" : "No"} | Notes: ${c.notes}`;  // Display age, employment status, and notes
+
+    // Hide the dashboard and show the case details view
     dashboard.classList.add("hidden");
     backBtn.classList.remove("hidden");
     caseDetails.classList.remove("hidden");
@@ -82,8 +106,29 @@ function backToDash(){
 
 
 function showProgressForm(){
-    //when clicked, social worker sees progress of a specific indiv
+    progForm.classList.remove("hidden");
 }
+
+function processProgForm(event) {
+    event.preventDefault();  // Prevent the form from submitting
+
+    // Get the form values
+    const employmentStatus = document.getElementById("employment").value;
+    const healthConditions = document.getElementById("health").value;
+    const additionalNotes = document.getElementById("notes").value;
+
+    // You can either use the existing case (e.g., update the selected case) or create a new case object.
+    // Assuming you are updating the existing case object and we have the current case (c)
+     // Assume you have a function to get the current case (e.g., from a global variable or passed parameter)
+
+    // Update the current case with the new information
+    currentCase.isEmployed = (employmentStatus.toLowerCase() === 'yes');  // Assuming "yes" or "no" input
+    currentCase.notes += `\nHealth Conditions: ${healthConditions}\nAdditional Notes: ${additionalNotes}`;
+
+    // After updating the case, show the case details on the page
+    showCaseDetails(currentCase);
+}
+
 
 function processClientForm(event) {
     event.preventDefault();
@@ -91,7 +136,7 @@ function processClientForm(event) {
     const firstName = document.getElementById("first-name").value;
     const lastName = document.getElementById("last-name").value;
     const age = parseInt(document.getElementById("age").value);
-    let isEmployed = document.getElementById("employment").value;
+    let isEmployed = document.getElementById("employ").value;
     let resources = '';
     if (isEmployed === "Yes"){
         isEmployed = true;
