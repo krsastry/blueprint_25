@@ -1,14 +1,14 @@
 <!DOCTYPE html>
     <html>
         <head>
-            <title>hfhp2</title>
+            <title>Yellow Brick Road</title>
             <link rel="stylesheet" type="text/css" href="index.css"/>
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         </head>
         <body>
-            <h1 class="header">Social Worker Case Tracker</h1>
+            <h1 class="header">Yellow Brick Road</h1>
             <link href="index.css" rel = "stylesheet">
             <button id="loginBtn" onClick="login()">Log In</button>
             <input type="text" id="indentification" class="input-field" placeholder="Enter login credentials">
@@ -41,53 +41,56 @@
                         <input type="text" id="age" class="input-field">
                         </div>
 
-                        <label for="domestic-abuse">Are you or have you been a subject of domestic abuse (physical, emotional, mental)?</label>
-                        <div class="yes-no">
-                            <button class="yes">Yes</button>
-                            <button class="no">No</button>
-                        </div>
+                        <label for="abuse">
+                            Are you or have you been a subject of domestic abuse (physical, emotional, mental)?
+                        </label>
+                        <select name="abuse" id="abuse">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
 
                         <label for="alcohol/drugs">Do you struggle with addiction to alcohol or other controlled substances?</label>
-                        <div class="yes-no">
-                            <button class="yes">Yes</button>
-                            <button class="no">No</button>
-                        </div>
+                        <select name="alcohol/drugs" id="alcohol/drugs">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
 
                         <label for="veteran">Are you a veteran?</label>
-                        <div class="yes-no">
-                            <button class="yes">Yes</button>
-                            <button class="no">No</button>
-                        </div>
+                        <select name="veteran" id="veteran">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
 
                         <div>
-                        <label for ="length">How long have you been experiencing homelessness?</label>
+                        <label for="length">How long have you been experiencing homelessness?</label>
                         <input type = "text" id="length" class="input-field">
                         </div>
 
                         <label for="acute-health">Do you have any acute health concerns?</label>
-                        <div class="yes-no">
-                            <button class="yes">Yes</button>
-                            <button class="no">No</button>
-                        </div>
+                        <select name="acute-health" id="acute-health">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
 
                         <label for="chronic-health">Do you have any chronic health concerns?</label>
-                        <div class="yes-no">
-                            <button class="yes">Yes</button>
-                            <button class="no">No</button>
-                        </div>
+                        <select name="chronic-health" id="chronic-health">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
                         
                         <label for="previous">Have you experienced homelessness before?</label>
-                        <div class="yes-no">
-                            <button class="yes">Yes</button>
-                            <button class="no">No</button>
-                        </div>
+                        <select name="previous" id="previous">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
 
                         <label for="employment">Are you currently employed?</label>
-                        <div class="yes-no">
-                            <button class="yes">Yes</button>
-                            <button class="no">No</button>
-                        </div>
+                        <select name="employment" id="employment">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
 
+                        <input type="submit" value="Submit">
                     </form>
 
                 </section>
@@ -119,12 +122,11 @@
                         <label for="notes">Other notes:</label>
                         <input type="text" id="notes" class="input-field">
 
-                        <button type="submit" class="submit-btn">Save Progress</button>
+                        <input type="submit" value="Submit">
                     </form>
                     <button id="cancelProgressBtn" class="cancel-btn" onClick ="hideProgressForm()">Cancel</button>
                 </section>
             </div>
             <script src="index.js"></script>
-        </body>
-        
-</html>
+        </body> 
+    </html>

@@ -66,19 +66,14 @@ function backToDash(){
     backBtn.classList.add("hidden");
 }
 
-function backToForm(){
-    dashboard.classList.remove("hidden");
-    caseDetails.classList.add("hidden");
-    backBtn.classList.add("hidden");
-}
+
 
 function showProgressForm(){
     //when clicked, social worker sees progress of a specific indiv
 }
 
-function 
 
-idCount = 1;
+let idCount = 0;
 class Case {
     name;
     status;
