@@ -6,53 +6,82 @@ const casesList = document.getElementById("casesList");
 const caseName = document.getElementById("caseName");
 const caseStatus = document.getElementById("caseStatus");
 const backBtn = document.getElementById("backBtn");
-
+const loginInput = document.getElementById("identification");
 // Mock Authentication (Replace with Firebase Auth)
 let userLoggedIn = false;
 
-loginBtn.addEventListener("click", () => {
-    userLoggedIn = true;
-    loginBtn.classList.add("hidden");
-    dashboard.classList.remove("hidden");
-    loadCases();
-});
+function login() {
+    let indentification = document.querySelector("#identification").value;
+    if (indentification == "Case Worker"){
+        userLoggedIn = true;
+        loginBtn.classList.add("hidden");
+        dashboard.classList.remove("hidden");
+        loadCases();
+        logout.classList.remove("hidden");
+        loginInput.classList.add("hidden");
+    } else if(indentification == "Client"){
+        userLoggedIn = true;
+        loginBtn.classList.add("hidden");
+        logout.classList.remove("hidden");
+        loginInput.classList.add("hidden");
 
-logoutBtn.addEventListener("click", () => {
+    }
+}
+
+function logout(){
     userLoggedIn = false;
     loginBtn.classList.remove("hidden");
     dashboard.classList.add("hidden");
-});
+    loginInput.classList.remove("hidden");
+}
 
 // Mock Cases (Replace with Firebase Data)
 const cases = [
-    { id: 1, name: "John Doe", status: "Needs Housing" },
-    { id: 2, name: "Jane Smith", status: "Needs Employment" }
+    new Case("John Smith", "Looking for housing"), 
+    new Case("Jane Doe", "Looking for employment")
 ];
 
 function loadCases() {
     casesList.innerHTML = "";
-    cases.forEach(c => {
+    for (const c of cases){
         const caseDiv = document.createElement("div");
         caseDiv.classList.add("case-card");
         caseDiv.innerHTML = `<h3>${c.name}</h3><p>${c.status}</p>`;
         caseDiv.addEventListener("click", () => showCaseDetails(c));
         casesList.appendChild(caseDiv);
-    });
+    };
 }
 
 function showCaseDetails(c) {
-    caseName.textContent = c.name;
-    caseStatus.textContent = c.status;
+    caseName.innerText = c.name;
+    caseStatus.innerText = c.status;
     dashboard.classList.add("hidden");
+    backBtn.classList.remove("hidden");
     caseDetails.classList.remove("hidden");
 }
 
-backBtn.addEventListener("click", () => {
-    caseDetails.classList.add("hidden");
+function backToDash(){
     dashboard.classList.remove("hidden");
-});
+    caseDetails.classList.add("hidden");
+    backBtn.classList.add("hidden");
+}
 
-const button = document.querySelector("#begin");
-button.addEventListener('click', function() {
-    document.querySelector("#heading")
-})
+function showProgressForm(){
+    //when clicked, social worker sees progress of a specific indiv
+}
+
+function 
+
+idCount = 0;
+class Case {
+    name;
+    status;
+    id;
+    
+    constructor(name, status){
+        this.name = name;
+        this.status = status;
+        this.id = idCount;
+        idCount++;
+    }
+}
