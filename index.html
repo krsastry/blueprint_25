@@ -11,7 +11,8 @@
             <h1 class="header">Yellow Brick Road</h1>
             <link href="index.css" rel = "stylesheet">
             <button id="loginBtn" onClick="login()">Log In</button>
-            <input type="text" id="indentification" class="input-field" placeholder="Enter login credentials">
+            <button id="signupBtn" onClick="signup()">Sign Up</button>
+            <input type="text" id="loginInput" placeholder="Enter login credentials">
 
             <div>
                 <section id="dashboard" class="hidden">
@@ -20,27 +21,28 @@
                     <div id="caseLists">Cases will appear here</div>
                 </section>
                 
-                <section id="form">
-                    <h2>Form</h2>
+                <section id="form" onsubmit="processClientForm(event)" class="hidden">
+                    <h2>Sign-Up Form</h2>
                     <form id="clientForm">
                         <!--Name, Kids, Veteran, Domestic Violence, 
                         Alcohol, Drugs, Health Condition, Length of Homelessness, 
                         Previous Experience of Homelesness (how did they get out), Age (minor?)-->
                         <div>
                             <label for="first-name">First Name:</label>
-                            <input type="text" id="first-name" class="input-field">
+                            <input type="text" id="first-name" class="input-field" placeholder="ex. Dorothy">
                         </div>
-
+                        
                         <div>
                         <label for="last-name">Last Name:</label>
-                        <input type="text" id="last-name" class="input-field">
+                        <input type="text" id="last-name" class="input-field" placeholder="ex. Gale">
                         </div>
                         
                         <div>
                         <label for="age">Age: </label> 
-                        <input type="text" id="age" class="input-field">
+                        <input type="text" id="age" class="input-field" placeholder="ex. 13">
                         </div>
 
+                        <br>
                         <label for="abuse">
                             Are you or have you been a subject of domestic abuse (physical, emotional, mental)?
                         </label>
@@ -49,53 +51,61 @@
                             <option value="no">No</option>
                         </select>
 
+                        <br>
                         <label for="alcohol/drugs">Do you struggle with addiction to alcohol or other controlled substances?</label>
                         <select name="alcohol/drugs" id="alcohol/drugs">
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
                         </select>
 
+                        <br>
                         <label for="veteran">Are you a veteran?</label>
                         <select name="veteran" id="veteran">
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
                         </select>
 
+                        <br>
                         <div>
                         <label for="length">How long have you been experiencing homelessness?</label>
                         <input type = "text" id="length" class="input-field">
                         </div>
 
+                        <br>
                         <label for="acute-health">Do you have any acute health concerns?</label>
                         <select name="acute-health" id="acute-health">
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
                         </select>
 
+                        <br>
                         <label for="chronic-health">Do you have any chronic health concerns?</label>
                         <select name="chronic-health" id="chronic-health">
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
                         </select>
                         
+                        <br>
                         <label for="previous">Have you experienced homelessness before?</label>
                         <select name="previous" id="previous">
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
                         </select>
 
+                        <br>
                         <label for="employment">Are you currently employed?</label>
                         <select name="employment" id="employment">
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
                         </select>
 
-                        <input type="submit" value="Submit">
+                        <br>
+                        <input type="submit" value="Submit" class="submit">
                     </form>
-
+                    <div id="result"></div>
                 </section>
 
-                <section id="caseDetails">
+                <section id="caseDetails" class="hidden">
                     <h2>Case Details</h2>
                     <p id="caseName"> Status:<span></span></p>
                     <p id="caseStatus"> Status:<span></span></p>
@@ -105,7 +115,7 @@
                     <button id="backBtn" class="hidden" onClick ="backToDash()">Back To Dashboard</button>
                 </section>
                 
-                <section id="progressForm">
+                <section id="progressForm" class="hidden">
                     <h2>
                         Update Progress
                     </h2>
@@ -113,15 +123,19 @@
                         <label for="housing">Housing Status:</label>
                         <input type="text" id="housing" class="input-field">
 
+                        <br>
                         <label for="employment"> Employment Status:</label>
                         <input type="text" id="employment" class="input-field">
 
+                        <br>
                         <label for="health"> Health Conditions:</label>
                         <input type="text" id="health" class="input-field">
 
+                        <br>
                         <label for="notes">Other notes:</label>
                         <input type="text" id="notes" class="input-field">
 
+                        <br>
                         <input type="submit" value="Submit">
                     </form>
                     <button id="cancelProgressBtn" class="cancel-btn" onClick ="hideProgressForm()">Cancel</button>
