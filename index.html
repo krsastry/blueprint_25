@@ -3,14 +3,126 @@
         <head>
             <title>hfhp2</title>
             <link rel="stylesheet" type="text/css" href="index.css"/>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         </head>
         <body>
-            <h1>Title</h1>
-            <button id="begin">Begin</button>
+            <h1 class="header">Social Worker Case Tracker</h1>
+            <link href="index.css" rel = "stylesheet">
+            <button id="loginBtn" onClick="login()">Log In</button>
+            <input type="text" id="indentification" class="input-field" placeholder="Enter login credentials">
+
             <div>
-                <p id="placeholder">
-                    
-                </p>
+                <section id="dashboard" class="hidden">
+                    <h2>Assigned Cases</h2>
+                    <button id="logoutBtn" class="hidden" onClick="logout()">Log Out</button>
+                    <div id="caseLists">Cases will appear here</div>
+                </section>
+                
+                <section id="form">
+                    <h2>Form</h2>
+                    <form id="clientForm">
+                        <!--Name, Kids, Veteran, Domestic Violence, 
+                        Alcohol, Drugs, Health Condition, Length of Homelessness, 
+                        Previous Experience of Homelesness (how did they get out), Age (minor?)-->
+                        <div>
+                            <label for="first-name">First Name:</label>
+                            <input type="text" id="first-name" class="input-field">
+                        </div>
+
+                        <div>
+                        <label for="last-name">Last Name:</label>
+                        <input type="text" id="last-name" class="input-field">
+                        </div>
+                        
+                        <div>
+                        <label for="age">Age: </label> 
+                        <input type="text" id="age" class="input-field">
+                        </div>
+
+                        <label for="domestic-abuse">Are you or have you been a subject of domestic abuse (physical, emotional, mental)?</label>
+                        <div class="yes-no">
+                            <button class="yes">Yes</button>
+                            <button class="no">No</button>
+                        </div>
+
+                        <label for="alcohol/drugs">Do you struggle with addiction to alcohol or other controlled substances?</label>
+                        <div class="yes-no">
+                            <button class="yes">Yes</button>
+                            <button class="no">No</button>
+                        </div>
+
+                        <label for="veteran">Are you a veteran?</label>
+                        <div class="yes-no">
+                            <button class="yes">Yes</button>
+                            <button class="no">No</button>
+                        </div>
+
+                        <div>
+                        <label for ="length">How long have you been experiencing homelessness?</label>
+                        <input type = "text" id="length" class="input-field">
+                        </div>
+
+                        <label for="acute-health">Do you have any acute health concerns?</label>
+                        <div class="yes-no">
+                            <button class="yes">Yes</button>
+                            <button class="no">No</button>
+                        </div>
+
+                        <label for="chronic-health">Do you have any chronic health concerns?</label>
+                        <div class="yes-no">
+                            <button class="yes">Yes</button>
+                            <button class="no">No</button>
+                        </div>
+                        
+                        <label for="previous">Have you experienced homelessness before?</label>
+                        <div class="yes-no">
+                            <button class="yes">Yes</button>
+                            <button class="no">No</button>
+                        </div>
+
+                        <label for="employment">Are you currently employed?</label>
+                        <div class="yes-no">
+                            <button class="yes">Yes</button>
+                            <button class="no">No</button>
+                        </div>
+
+                    </form>
+
+                </section>
+
+                <section id="caseDetails">
+                    <h2>Case Details</h2>
+                    <p id="caseName"> Status:<span></span></p>
+                    <p id="caseStatus"> Status:<span></span></p>
+
+                    </p>
+                    <button id="updateProgessBtn" class="update-btn" onClick ="showProgressForm()">Update Progress</button>
+                    <button id="backBtn" class="hidden" onClick ="backToDash()">Back To Dashboard</button>
+                </section>
+                
+                <section id="progressForm">
+                    <h2>
+                        Update Progress
+                    </h2>
+                    <form id ="progForm">
+                        <label for="housing">Housing Status:</label>
+                        <input type="text" id="housing" class="input-field">
+
+                        <label for="employment"> Employment Status:</label>
+                        <input type="text" id="employment" class="input-field">
+
+                        <label for="health"> Health Conditions:</label>
+                        <input type="text" id="health" class="input-field">
+
+                        <label for="notes">Other notes:</label>
+                        <input type="text" id="notes" class="input-field">
+
+                        <button type="submit" class="submit-btn">Save Progress</button>
+                    </form>
+                    <button id="cancelProgressBtn" class="cancel-btn" onClick ="hideProgressForm()">Cancel</button>
+                </section>
             </div>
             <script src="index.js"></script>
         </body>
